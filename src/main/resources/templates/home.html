@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Snack Vending Machine</title>
+</head>
+<body>
+<!--<div th:replace="header"></div>-->
+<div class="col-md-offset-2 col-sm-8">
+    <h2>Machine configuration</h2>
+    <form th:action="@{/api/service}" method="get">
+        <div align="right">
+            <input class="btn-info btn-lg" type="submit" value="Machine service">
+        </div>
+    </form>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Item number</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">In stock</th>
+            <th scope="col" colspan="1">Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product, iStat: ${products}">
+            <!--            <th scope="row" th:text="${iStat.index + 1}"/>-->
+            <td th:text="${product.selectionNumber}"/>
+            <td th:text="${product.name}"/>
+            <td th:text="${product.price}"/>
+            <td th:text="${product.stock}"/>
+
+            <td>
+                <a th:href="@{|/api/products/${product.id}/purchase|}">Purchase</a>
+            </td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>

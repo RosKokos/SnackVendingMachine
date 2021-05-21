@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Reports</title>
+</head>
+<body>
+<div align="center">
+    <p>
+        <th:block th:text="${check}"/>
+    </p>
+    <a class="btn" th:href="@{/api/products}" target="products">Home</a>
+</div>
+</body>
+</html>
