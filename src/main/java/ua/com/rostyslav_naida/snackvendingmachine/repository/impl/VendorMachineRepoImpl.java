@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public class VendorMachineRepoImpl implements VendorMachineRepo {
+
     private static int id = 1;
     private List<VendingMachine> vendingMachineList = new ArrayList<>(100);
     final ProductRepo productRepo;
@@ -19,7 +20,7 @@ public class VendorMachineRepoImpl implements VendorMachineRepo {
     }
 
     @Override
-    public VendingMachine create(final VendingMachine machine){
+    public VendingMachine create(final VendingMachine machine) {
         machine.setId(id++);
         vendingMachineList.add(machine);
         return machine;
@@ -38,7 +39,7 @@ public class VendorMachineRepoImpl implements VendorMachineRepo {
     @Override
     public VendingMachine update(final VendingMachine machine) {
 
-        if(machine == null || machine.getId() == 0){
+        if (machine == null || machine.getId() == 0) {
             throw new RuntimeException("Wrong ID");
         }
         vendingMachineList.set(machine.getId(), machine);

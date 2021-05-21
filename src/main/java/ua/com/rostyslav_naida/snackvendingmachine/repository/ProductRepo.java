@@ -1,12 +1,11 @@
 package ua.com.rostyslav_naida.snackvendingmachine.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import ua.com.rostyslav_naida.snackvendingmachine.model.Product;
 
 import java.util.List;
-import java.util.Properties;
 
 public interface ProductRepo {
+
     void create(Product product);
 
     Product findById(final int id);

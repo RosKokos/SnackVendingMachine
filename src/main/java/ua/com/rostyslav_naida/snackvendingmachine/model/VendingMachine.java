@@ -11,8 +11,10 @@ import java.util.List;
 @ToString
 @Builder
 public class VendingMachine {
-   private int id;
-   private String name;
-   private List<Product> productList;
+    private int id;
+
+    private String name;
+
+    private List<Product> productList;
 
 }

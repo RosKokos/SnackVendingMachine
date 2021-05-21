@@ -18,6 +18,7 @@ import java.time.LocalDate;
 @Controller
 @RequestMapping("/api")
 public class VendingMachineController {
+
     final ProductService productService;
     final ReportService reportService;
     final VendingMachineService vendingMachineService;
@@ -37,7 +38,7 @@ public class VendingMachineController {
     @GetMapping("/products/{id}/purchase")
     public String purchase(@PathVariable long id, Model model) {
 
-        model.addAttribute("check",vendingMachineService.purchase((int)id));
+        model.addAttribute("check", vendingMachineService.purchase((int) id));
 
         return "check";
     }
@@ -54,8 +55,9 @@ public class VendingMachineController {
         model.addAttribute("report", reportService.reportForMonth(LocalDate.now()));
         return "report";
     }
+
     @GetMapping("/service/report/period")
-    public String reportForCertainPeriod(@Validated @ModelAttribute("date")DateContainer date, Model model, BindingResult result ) {
+    public String reportForCertainPeriod(@Validated @ModelAttribute("date") DateContainer date, Model model, BindingResult result) {
         model.addAttribute("report", reportService.sortedReportFromDate(date.getDates()));
         return "report";
     }

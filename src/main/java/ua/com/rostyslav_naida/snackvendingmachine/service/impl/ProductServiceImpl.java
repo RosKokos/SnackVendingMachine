@@ -11,11 +11,16 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     final ProductRepo productRepo;
-    ProductServiceImpl(ProductRepo productRepo){this.productRepo = productRepo;}
+
+    ProductServiceImpl(ProductRepo productRepo) {
+        this.productRepo = productRepo;
+    }
+
     @Override
-    public List<Product> findAll(){
+    public List<Product> findAll() {
         return productRepo.findAll();
     }
+
     @Override
     public Product findById(final int id) {
         return productRepo.findById(id);

@@ -3,6 +3,7 @@ package ua.com.rostyslav_naida.snackvendingmachine.model;
 import lombok.*;
 
 import java.util.Objects;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -23,6 +24,7 @@ public class Product {
     private int machineId;
 
     public Product(String name, double price, int selectionNumber) {
+
         this.name = name;
         this.price = price;
         this.selectionNumber = selectionNumber;

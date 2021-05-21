@@ -4,7 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import ua.com.rostyslav_naida.snackvendingmachine.model.Product;
 import ua.com.rostyslav_naida.snackvendingmachine.service.ProductService;
 import ua.com.rostyslav_naida.snackvendingmachine.service.VendingMachineService;
@@ -19,14 +22,16 @@ public class ProductController {
         this.productService = productService;
         this.vendingMachineService = vendingMachineService;
     }
+
     @GetMapping("api/service/create")
-    public String create(Model model){
+    public String create(Model model) {
         model.addAttribute("product", new Product());
         return "addItem";
     }
+
     @PostMapping("api/service/create")
-    public String create(@Validated @ModelAttribute("product") Product product, BindingResult result){
-        if (result.hasErrors()){
+    public String create(@Validated @ModelAttribute("product") Product product, BindingResult result) {
+        if (result.hasErrors()) {
             return "addItem";
         }
         vendingMachineService.addCategory(product);
@@ -34,13 +39,14 @@ public class ProductController {
     }
 
     @GetMapping("api/service/{id}/update")
-    public String updateItem(@PathVariable long id, Model model){
-        model.addAttribute("products", productService.findById((int)id));
+    public String updateItem(@PathVariable long id, Model model) {
+        model.addAttribute("products", productService.findById((int) id));
         return "changeItem";
     }
+
     @PostMapping("api/service/update")
-    public String updateItem(@Validated @ModelAttribute("product") Product product, BindingResult result){
-        if (result.hasErrors()){
+    public String updateItem(@Validated @ModelAttribute("product") Product product, BindingResult result) {
+        if (result.hasErrors()) {
             return "changeItem";
         }
         vendingMachineService.addItem(product.getName(), product.getStock());

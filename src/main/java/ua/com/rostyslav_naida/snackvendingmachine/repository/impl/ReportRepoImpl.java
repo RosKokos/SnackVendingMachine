@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public class ReportRepoImpl implements ReportRepo {
+
     private static int id = 1;
     private List<ProductDto> listOfBills = new ArrayList<>();
 
