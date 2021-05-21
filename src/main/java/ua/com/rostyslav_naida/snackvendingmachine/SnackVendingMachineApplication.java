@@ -9,6 +9,8 @@ public class SnackVendingMachineApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(SnackVendingMachineApplication.class, args);
+
+
     }
 
 }

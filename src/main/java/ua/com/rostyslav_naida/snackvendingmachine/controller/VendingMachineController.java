@@ -37,9 +37,7 @@ public class VendingMachineController {
 
     @GetMapping("/products/{id}/purchase")
     public String purchase(@PathVariable long id, Model model) {
-
         model.addAttribute("check", vendingMachineService.purchase((int) id));
-
         return "check";
     }
 
