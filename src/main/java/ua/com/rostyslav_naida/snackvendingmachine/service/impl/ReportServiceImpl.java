@@ -51,9 +51,9 @@ public class ReportServiceImpl implements ReportService {
 
             double prise = reportRepo.findByName(item.getKey()).getProductPrice();
             report.add(item.getKey() + " " + prise + " " + item.getValue());
-            total = prise * item.getValue();
+            total += prise * item.getValue();
         }
-        report.add(">Total " + total);
+        report.add(String.format(">Total %,.2f", total));
         return report;
     }
 }
