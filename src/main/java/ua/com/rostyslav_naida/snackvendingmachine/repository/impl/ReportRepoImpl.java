@@ -27,7 +27,7 @@ public class ReportRepoImpl implements ReportRepo {
     @Override
     public ProductDto findByName(final String name) {
         return listOfBills.stream()
-                .filter(p -> p.getProductName().equals(name))
+                .filter(p -> p.getName().equals(name))
                 .findFirst()
                 .get();
     }

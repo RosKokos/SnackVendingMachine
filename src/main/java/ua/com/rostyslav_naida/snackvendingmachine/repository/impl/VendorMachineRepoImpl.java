@@ -12,8 +12,8 @@ import java.util.List;
 public class VendorMachineRepoImpl implements VendorMachineRepo {
 
     private static int id = 1;
-    private List<VendingMachine> vendingMachineList = new ArrayList<>(100);
-    final ProductRepo productRepo;
+    private final List<VendingMachine> vendingMachineList = new ArrayList<>(100);
+    private final ProductRepo productRepo;
 
     VendorMachineRepoImpl(final ProductRepo productRepo) {
         this.productRepo = productRepo;

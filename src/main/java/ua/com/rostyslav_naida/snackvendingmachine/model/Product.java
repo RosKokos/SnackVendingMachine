@@ -21,23 +21,6 @@ public class Product {
 
     private int stock;
 
-    private int machineId;
-
-    public Product(String name, double price, int selectionNumber) {
-
-        this.name = name;
-        this.price = price;
-        this.selectionNumber = selectionNumber;
-        this.stock = 0;
-    }
-
-    public Product(String name, double price, int selectionNumber, int stock) {
-        this.name = name;
-        this.price = price;
-        this.selectionNumber = selectionNumber;
-        this.stock = stock;
-    }
-
     @Override
     public String toString() {
         return "Product='" + name + '\'' +
@@ -50,7 +33,9 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 && selectionNumber == product.selectionNumber && Objects.equals(name, product.name);
+        return Double.compare(product.price, price) == 0 &&
+                selectionNumber == product.selectionNumber &&
+                Objects.equals(name, product.name);
     }
 
     @Override

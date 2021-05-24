@@ -2,18 +2,18 @@ package ua.com.rostyslav_naida.snackvendingmachine.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ua.com.rostyslav_naida.snackvendingmachine.model.DateContainer;
+import ua.com.rostyslav_naida.snackvendingmachine.dto.DateContainer;
 import ua.com.rostyslav_naida.snackvendingmachine.service.ProductService;
 import ua.com.rostyslav_naida.snackvendingmachine.service.ReportService;
 import ua.com.rostyslav_naida.snackvendingmachine.service.VendingMachineService;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/api")
@@ -23,7 +23,9 @@ public class VendingMachineController {
     final ReportService reportService;
     final VendingMachineService vendingMachineService;
 
-    public VendingMachineController(final ProductService productService, final ReportService reportService, final VendingMachineService vendingMachineService) {
+    public VendingMachineController(final ProductService productService,
+                                    final ReportService reportService,
+                                    final VendingMachineService vendingMachineService) {
         this.productService = productService;
         this.reportService = reportService;
         this.vendingMachineService = vendingMachineService;
@@ -50,13 +52,16 @@ public class VendingMachineController {
 
     @GetMapping("/service/report")
     public String monthReport(Model model) {
-        model.addAttribute("report", reportService.reportForMonth(LocalDate.now()));
+        model.addAttribute("report", reportService.reportByMonth(LocalDate.now()));
         return "report";
     }
 
     @GetMapping("/service/report/period")
-    public String reportForCertainPeriod(@Validated @ModelAttribute("date") DateContainer date, Model model, BindingResult result) {
-        model.addAttribute("report", reportService.sortedReportFromDate(date.getDates()));
+    public String reportForCertainPeriod(@Validated @ModelAttribute("date") DateContainer date,
+                                         Model model) {
+        // todo validate date
+        final List<String> reports = reportService.sortedReportFromDate(date.getDates());
+        model.addAttribute("report", reports);
         return "report";
     }
 }

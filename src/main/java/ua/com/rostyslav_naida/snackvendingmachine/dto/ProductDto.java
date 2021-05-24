@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import ua.com.rostyslav_naida.snackvendingmachine.model.VendingMachine;
 
 import java.time.LocalDate;
 
@@ -20,10 +19,8 @@ public class ProductDto {
 
     private LocalDate dateOfSale;
 
-    private String productName;
+    private String name;
 
-    private double productPrice;
-
-    private VendingMachine vendingMachine;
+    private double price;
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    final ProductRepo productRepo;
+    private final ProductRepo productRepo;
 
     ProductServiceImpl(ProductRepo productRepo) {
         this.productRepo = productRepo;

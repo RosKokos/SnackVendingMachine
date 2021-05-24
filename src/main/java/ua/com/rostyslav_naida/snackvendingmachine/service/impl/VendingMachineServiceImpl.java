@@ -29,7 +29,10 @@ public class VendingMachineServiceImpl implements VendingMachineService {
         }
         productRepo.create(category);
 
-        return String.format("%s %f %d ", category.getName(), category.getPrice(), category.getSelectionNumber());
+        return String.format("%s %f %d ",
+                category.getName(),
+                category.getPrice(),
+                category.getSelectionNumber());
     }
 
     @Override
@@ -37,18 +40,21 @@ public class VendingMachineServiceImpl implements VendingMachineService {
         Product addStock = productRepo.findByName(name);
         addStock.setStock(addStock.getStock() + stock);
         productRepo.update(addStock);
-        return String.format("%s %f %d", addStock.getName(), addStock.getPrice(), addStock.getStock());
+        return String.format("%s %f %d",
+                addStock.getName(),
+                addStock.getPrice(),
+                addStock.getStock());
     }
 
     @Override
     public String purchase(final int id) {
-        Product addStock = productRepo.findById(id);
-        if (addStock.getStock() == 0) {
+        Product product = productRepo.findById(id);
+        if (product.getStock() == 0) {
             throw new RuntimeException("Purchase forbidden, stock = 0");
         }
-        addStock.setStock(addStock.getStock() - 1);
-        productRepo.update(addStock);
-        return transfer(addStock);
+        product.setStock(product.getStock() - 1);
+        productRepo.update(product);
+        return transfer(product);
     }
 
     @Override
@@ -58,12 +64,15 @@ public class VendingMachineServiceImpl implements VendingMachineService {
 
     private String transfer(Product product) {
         ProductDto productDto = ProductDto.builder()
-                .productName(product.getName())
-                .productPrice(product.getPrice())
+                .name(product.getName())
+                .price(product.getPrice())
                 .dateOfSale(LocalDate.now())
                 .build();
         reportRepo.create(productDto);
-        return String.format("%s %n %s %,.2f", productDto.getDateOfSale().toString(),
-                productDto.getProductName(), productDto.getProductPrice());
+
+        return String.format("%s %n %s %,.2f",
+                productDto.getDateOfSale().toString(),
+                productDto.getName(),
+                productDto.getPrice());
     }
 }

@@ -1,4 +1,4 @@
-package ua.com.rostyslav_naida.snackvendingmachine.model;
+package ua.com.rostyslav_naida.snackvendingmachine.dto;
 
 
 import lombok.AllArgsConstructor;

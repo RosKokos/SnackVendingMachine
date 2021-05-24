@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ReportServiceImplTests {
     ProductDto testDto = ProductDto.builder()
             .dateOfSale(LocalDate.parse("2016-08-16"))
-            .productName("chocolate")
-            .productPrice(10.5d)
+            .name("chocolate")
+            .price(10.5d)
             .build();
 
     @Autowired
@@ -30,7 +30,7 @@ public class ReportServiceImplTests {
     public void checkReportForMonth(){
         reportRepo.create(testDto);
         String expectation = "chocolate";
-        String actual = reportService.reportForMonth(LocalDate.parse("2016-08-16")).get(0);
+        String actual = reportService.reportByMonth(LocalDate.parse("2016-08-16")).get(0);
         assertTrue(actual.contains(expectation));
     }
 
